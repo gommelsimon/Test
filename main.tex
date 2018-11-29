@@ -1,0 +1,271 @@
+%------------------------------------------------
+%	Preamble
+%------------------------------------------------
+
+	%------------------------------------------------
+	%	Document Parameters
+	%------------------------------------------------
+	
+\documentclass[12pt,a4paper]{scrartcl}
+
+\usepackage{titling}
+\title{Collective Animal Behaviour}
+\author{Simon Gommel}
+
+\usepackage[T1]{fontenc}
+
+\usepackage[left=2cm, right=2cm, top=1.5cm, bottom=1.5cm,includeheadfoot]{geometry} 		% page layout
+\linespread{1}																																																											% line spread
+\setlength{\parindent}{0pt}																	% no indent at the start of a new section
+
+\usepackage{changepage} 																	% horizontal indent for defined text parts
+																							% \begin{adjustwidth}{left margin}{right margin}
+																							% end{adjustwidth}
+
+\usepackage{fancyhdr} 																		% header & footer
+\pagestyle{fancy}
+
+\lhead{\slshape \leftmark}
+%\chead{\slshape Parasitology}
+\rhead{\slshape \rightmark}
+
+%\lfoot{}
+\cfoot{\thepage}
+%\rfoot{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+	%------------------------------------------------
+	%	Math
+	%------------------------------------------------
+
+\usepackage{amsmath} 																		% math formula package
+\usepackage{amsfonts} 																		% adds math symbols
+\usepackage{amssymb}																		% adds math commands
+
+
+	%------------------------------------------------
+	%	Text
+	%------------------------------------------------
+
+\usepackage[utf8]{luainputenc} 																% enables ä ö ü ß
+\usepackage[english]{babel} 																% english package
+\usepackage{pxfonts} 																		% greek alphabet $\alpha$
+\usepackage{textcomp}																		% x\textdegree{}C for x°C
+\usepackage{xcolor}																			% \textcolor{color}{text}
+\usepackage{luacolor}
+\usepackage{listings}
+
+% Python style for highlighting
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  frame=single,
+  showstringspaces=false,
+  showspaces=false,
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+\usepackage[normalem]{ulem}
+																							% \uline{underline}
+																							% \uuline{double-underline}
+																							% \uwave{wave underlined}
+																							% \sout{scored out}
+																							% \xout{crossed out}
+
+
+	%------------------------------------------------
+	%	Pictures
+	%------------------------------------------------
+
+\usepackage{graphicx}																		% allows pictures
+\usepackage{float}																			% allows picture placement command [H]
+\usepackage{wrapfig}																		% allows picture next to text, doesn't work with itemize
+\usepackage{caption}
+\usepackage{subcaption}
+
+	%------------------------------------------------
+	%	Tables
+	%------------------------------------------------
+	
+\usepackage{tabularx}
+\usepackage{adjustbox}																		% helps fitting the table on the page
+\usepackage{multirow}
+
+	%------------------------------------------------
+	%	Index
+	%------------------------------------------------
+	
+\usepackage{imakeidx}
+\makeindex[columns=2, options=-s mystyle]
+\indexsetup{othercode=\small}																% change index font size
+
+\usepackage{filecontents}
+	\begin{filecontents}{mystyle.ist}
+		headings_flag  1 																	% Headline enabled
+		heading_prefix "{\\bfseries " 														% Headline bold
+		heading_suffix "\\hfil}\\nopagebreak\n"												% no page break left 
+		delim_0 "\\dotfill"																	% dottet line between entries and page numbers 1st level
+		delim_1 "\\dotfill" 																% dottet line between entries and page numbers 2nd level
+		delim_2 "\\dotfill" 																% dottet line between entries and page numbers 3rd level
+		delim_r "--"																		% separated beginning and end of page area
+		suffix_2p "\\,f." 																	% Suffix 2 pages
+		suffix_3p "\\,ff." 																	% Suffix 3 pages
+	\end{filecontents}
+	
+	
+	%------------------------------------------------
+	%	List of acronyms
+	%------------------------------------------------	
+	
+\usepackage[printonlyused]{acronym}													
+
+
+	%------------------------------------------------
+	%	References
+	%------------------------------------------------
+
+\usepackage{hyperref} 																		% allows references and links
+	\hypersetup{
+	    bookmarks=true,
+	    unicode=false,
+	    pdftoolbar=true,
+	    pdfmenubar=true,
+	    pdffitwindow=false,
+	    pdfstartview={FitH},
+	    pdftitle={My title},
+	    pdfauthor={Author},
+	    pdfsubject={Subject},
+	    pdfcreator={Creator},
+	    pdfproducer={Producer},
+	    pdfkeywords={keyword1} {key2} {key3},
+	    pdfnewwindow=true,
+	    colorlinks=false,
+	    linkcolor=black,
+	    citecolor=green,
+	    filecolor=magenta,
+	    urlcolor=cyan
+	}
+
+\usepackage{caption}
+	\captionsetup[figure]{labelfont={bf},labelformat={default},labelsep=period,name={Fig.}}
+	\captionsetup[table]{labelfont={bf},labelformat={default},labelsep=period,name={Tab.}}
+		
+
+	%------------------------------------------------
+	% New commands
+	%------------------------------------------------
+
+\newcommand{\wipic}[3]{	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width={#2}]{pictures/{#1}}
+	\caption{{#3}}
+	\label{fig:{#1}}
+\end{figure}
+}
+
+\newcommand{\wipich}[3]{	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width={#2}]{pictures/{#1}}
+	\caption{{#3}}
+	\label{fig:{#1}}
+\end{figure}
+}
+
+\newcommand{\hepic}[3]{	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[height={#2}]{pictures/{#1}}
+	\caption{{#3}}
+	\label{fig:{#1}}
+\end{figure}
+}
+
+\newcommand{\hepich}[3]{	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[height={#2}]{pictures/{#1}}
+	\caption{{#3}}
+	\label{fig:{#1}}
+\end{figure}
+}
+
+\newcommand{\wpic}[3]{
+	\begin{wrapfigure}{r}{0.5\textwidth}
+		\vspace{-20pt}
+		\centering
+		\includegraphics[height={#2},keepaspectratio]{pictures/{#1}}
+		\vspace{-5pt}
+		\caption{#3}
+		\label{fig:{#1}}
+		% \vspace{-10pt}
+	\end{wrapfigure}
+}
+
+\newcommand{\ppic}[7]{%
+	\begin{figure}[H]
+		\centering	
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering			
+			\includegraphics[height={#2},keepaspectratio]{pictures/{#1}}
+			\caption{{#3}}
+			\label{fig:{#1}}
+		\end{subfigure}%
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering	
+			\includegraphics[height={#5},keepaspectratio]{pictures/{#4}}
+			\caption{{#6}}
+			\label{fig:{#4}}		
+		\end{subfigure}
+		\caption{{#7}}
+	\end{figure}
+}
+
+\newcommand{\blue}[1]{%
+  \protect\leavevmode
+  \begingroup
+    \color{blue}%
+    #1%
+  \endgroup
+}
+
+%------------------------------------------------
+%	Document
+%------------------------------------------------
+
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{lstlisting}[language=python]
+
+coords = []
+focal_paused_frames = df[(df['id'] == 1) & (df['moving_classification'] == 0)]['frame'].values
+for frame in focal_paused_frames[:10000]: ### I think this is the loop we have to somehow change to get the program more effective
+    frame_df = df[df['frame'] == frame]
+    focal_df = frame_df[frame_df['id'] == 1]
+    if focal_df.shape[0] > 0: # checking if there are pause frames for the current focal individual
+        other_df = frame_df[frame_df['id'] != 1]
+        R = np.array([[focal_df['dir_x'].values, -focal_df['dir_y'].values], # defining rotation matrix R
+                      [focal_df['dir_y'].values, focal_df['dir_x'].values]])
+        R = np.squeeze(R) # removes single-dimensional entries from arrays (8, 1, 3) => (8, 3)
+        xy = other_df[['pos_x_cm', 'pos_y_cm']].values - focal_df[['pos_x_cm', 'pos_y_cm']].values
+        xy = np.matmul(xy, R) # multiplying position and R via matrix product
+        coords.append(xy)
+
+\end{lstlisting}
+
+\end{document}
